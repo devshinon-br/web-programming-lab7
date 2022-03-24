@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h2>Add Product With Validation</h2>
+<form action="#" th:action="@{/lab7/product-valid}" th:object="${product}" method="get">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" /></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" th:field="*{price}" /></td>
+            <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</td>
+        </tr>
+        <tr>
+            <td>Due Date:</td>
+            <td><input type="text" th:field="*{dueDate}" /></td>
+            <td th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}">Due Date Error</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

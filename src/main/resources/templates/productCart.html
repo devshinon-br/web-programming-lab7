@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Spring Boot Session Example</title>
+    </head>
+    <body>
+        <div>
+            <h2>Product Data In Session</h2>
+            <div>
+                <span th:text="${productData?.name} ?: 'No product name'"/><br>
+                <span th:text="${productData?.price} ?: 'No product price'"/><br>
+                <span th:text="${productData?.dueDate} ?: 'No product due date'"/><br>
+
+                <form th:action="@{/cart/persistProduct}" method="post">
+                    <input name="name" value="name" id="nameField"><br>
+                    <input name="price" value="price" id="priceField"><br>
+                    <input name="dueDate" value="dueDate" id="dueDateField"><br>
+                    <input type="submit" value="Save Product Data"/>
+                </form>
+            </div>
+            <div>
+                <h2>Products</h2>
+                <ul th:each="product : ${sessionProducts}">
+                    <li th:text="${product.name}">name</li>
+                    <li th:text="${product.price}">price</li>
+                    <li th:text="${product.dueDate}">dueDate</li>
+                    <p>--------------------------------</p>
+                </ul>
+            </div>
+            <div>
+                <h2>Session ID</h2>
+                Current Session ID xx <span th:text="${sessionId}"/>
+            </div>
+            <div>
+                <form th:action="@{/destroy}" method="post">
+                    <input type="submit" value="Destroy Session"/>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
